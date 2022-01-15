@@ -1,9 +1,10 @@
+-- Criando e usando o banco de dados.
 create database db_pizzaria_legal;
-
 use db_pizzaria_legal;
+
 -- Criando a tabela categoria
 create table tb_categoria(
-	id bigint auto_increment,
+	id bigint auto_increment primary key,
 	produto varchar(20) not null,
 	tipo varchar(20) not null,
     tamanho varchar(20) not null,
@@ -24,7 +25,6 @@ create table tb_pizza(
     quantidade int not null,
     preco decimal(4,2),
     id_categoria bigint,
-    primary key (id),
 	foreign key (id_categoria) references tb_categoria (id)
 );
 
@@ -38,11 +38,11 @@ INSERT INTO tb_pizza(sabor, bebidas, quantidade, preco, id_categoria) VALUES ("q
 INSERT INTO tb_pizza(sabor, bebidas, quantidade, preco, id_categoria) VALUES ("frango c/ catupiry", "pepsi", "1", 43.50, 4);
 INSERT INTO tb_pizza(sabor, bebidas, quantidade, preco, id_categoria) VALUES ("carne", "fanta-uva", "12", 38.90, 5);
 
-SELECT * FROM tb_pizza where preco > 45; --
+SELECT * FROM tb_pizza where preco > 45; -- Retornando os itens com os preços acima de 45 reais
 
-SELECT * FROM tb_pizza where preco between 29 and 60;
+SELECT * FROM tb_pizza where preco between 29 and 60; -- Retornando os itens com o preço entre 29 e 60 reais
 
-SELECT * FROM tb_pizza where sabor like "%C%";
+SELECT * FROM tb_pizza where sabor like "%C%"; -- Retornando os itens com a Palavra "C"
 
-SELECT * FROM tb_categoria INNER JOIN tb_pizza ON tb_categoria.id=tb_pizza.id_categoria;
-SELECT * FROM tb_pizza INNER JOIN tb_categoria ON tb_categoria.id = tb_pizza.id_categoria where id_categoria = 3;
+SELECT * FROM tb_categoria INNER JOIN tb_pizza ON tb_categoria.id=tb_pizza.id_categoria; -- Mostrando as duas tabelas na Tela
+SELECT * FROM tb_pizza INNER JOIN tb_categoria ON tb_categoria.id = tb_pizza.id_categoria where id_categoria = 3; -- Mostrando todos os Produtos de uma categoria específica 

@@ -1,13 +1,13 @@
+-- Criando e usando o banco de dados.
 create database db_generation_game_online;
 use db_generation_game_online;
 
 -- Criando a tabela Classe
 create table tb_classe(
-	id bigint auto_increment,
+	id bigint auto_increment primary key,
 	atributo varchar(20) not null,
     classe varchar(20) not null,
-	personalidade varchar(30) not null,
-    primary key (id)
+	personalidade varchar(30) not null
 );
 
 -- Populando a Tabela Classe
@@ -19,14 +19,12 @@ INSERT INTO tb_classe(atributo, classe, personalidade) VALUES ("Luz","Clériga(o
 
 -- Criando a Tabela Personagem
 create table tb_personagem(
-	idPersonagem bigint auto_increment,
+	idPersonagem bigint auto_increment primary key ,
     nome varchar(30),
     genero varchar(30) not null, 
     nivel int not null,
     ataque int not null,
     defesa int not null,
-    
-    primary key (idPersonagem),
     id_classeFK bigint,
 	foreign key (id_classeFK) references tb_classe (id)
 );
